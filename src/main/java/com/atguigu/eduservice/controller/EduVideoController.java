@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 @Api(description = "添加小节")
 @RestController
 @CrossOrigin
-@RequestMapping("/eduservice/edu-video")
+@RequestMapping("/eduservice/video")//对应前端.js文件中的路径
 public class EduVideoController {
     @Autowired
     private EduVideoService videoService;
