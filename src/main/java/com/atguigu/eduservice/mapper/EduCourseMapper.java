@@ -15,7 +15,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 public interface EduCourseMapper extends BaseMapper<EduCourse> {
 
     //根据课程id返回课程最终确认信息，查询多张表
-    public CoursePublishVo getCoursePublishInfo(String courseId);
+    CoursePublishVo getCoursePublishInfo(String courseId);
 
 
 
