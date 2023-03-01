@@ -6,6 +6,7 @@ import com.atguigu.eduservice.client.VodClient;
 import com.atguigu.eduservice.entity.EduVideo;
 import com.atguigu.eduservice.entity.vo.CourseInfoVo;
 import com.atguigu.eduservice.service.EduVideoService;
+import com.atguigu.exceptionhandler.GuliException;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
@@ -49,7 +50,10 @@ public class EduVideoController {
         //要判断是否有视频
         if (!StringUtils.isEmpty(videoSourceId)) {
             //根据视频id，远程调用实现删除
-            vodClient.removeAlyVideo(videoSourceId);
+            R result = vodClient.removeAlyVideo(videoSourceId);
+            if (result.getCode()==20001){
+                throw new GuliException(20001,"删除视频失败-熔断器");
+            }
         }
         //删除小节  先删视频，不然小节没了，就查不到视频
         videoService.removeById(id);
